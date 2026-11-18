@@ -6,7 +6,7 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 17:48:46 by pking             #+#    #+#             */
-/*   Updated: 2026/11/18 21:02:23 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/18 21:39:55 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 // runs in main thread
 // joins every started thread and destroys mutexes
 // handles malloc failed case with data->philo
-void cleanup (t_data *data)
+void	cleanup(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (data->philo && i < data->num_of_philos)

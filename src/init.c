@@ -6,23 +6,23 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 15:18:22 by pking             #+#    #+#             */
-/*   Updated: 2026/11/17 19:11:46 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/18 21:40:24 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 // 1.5 init_data(t_data *data): bzero for the struct
-void init_data(t_data *data)
+void	init_data(t_data *data)
 {
 	memset(data, 0, sizeof(*data));
 	data->num_times_philos_eat = -1;
 }
 
 // 8.1: init mutexes, also creates the array of philos and array of forks
-static	int	init_mutexes(t_data *data)
+static int	init_mutexes(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philos);
@@ -45,9 +45,9 @@ static	int	init_mutexes(t_data *data)
 }
 
 // 8.2 init_philos: fills each philo (id, forks, last_meal, ptr to data)
-void init_philos(t_data *data)
+void	init_philos(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->num_of_philos)
@@ -60,15 +60,16 @@ void init_philos(t_data *data)
 		data->philo[i].data = data;
 		i++;
 	}
-
 }
 
-// 8. init_simulation: 8.1 Mutexes -> 8.2 start time -> 8.3 philos -> launch threads
-// pthread_create: this is used to store a thread at each philo's thread's
-// 					pthread_t. 
-int	init_simulation(t_data *data)
+// 8. init_simulation: 8.1 Mutexes -> 8.2 start time -> 8.3 philos
+->launch threads
+	// pthread_create: this is used to store a thread at each philo's thread's
+	// 					pthread_t.
+	int
+	init_simulation(t_data *data)
 {
-	int i;
+	int	i;
 
 	if (init_mutexes(data))
 		return (1);
@@ -77,8 +78,8 @@ int	init_simulation(t_data *data)
 	i = 0;
 	while (i < data->num_of_philos)
 	{
-		if (pthread_create(&data->philo[i].thread, NULL,
-				philo_routine, &data->philo[i]))
+		if (pthread_create(&data->philo[i].thread, NULL, philo_routine,
+				&data->philo[i]))
 		{
 			set_stop(data);
 			data->num_of_philos = i;

@@ -6,28 +6,29 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 18:22:50 by pking             #+#    #+#             */
-/*   Updated: 2026/11/18 21:33:31 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/18 21:42:40 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-/*
-    Features of a philo
-    One -- Eat
-    Two -- Sleep
 
-    Three -- Pick up Forks
-	
+/*
+	Features of a philo
+	One -- Eat
+	Two -- Sleep
+
+	Three -- Pick up Forks
+
 	If not sleeping, and no forks, they are thinking
 */
 
 // 9.2.1 take forks: odd philos need extra thinking to give others time to eat
 // odd philos need extra thinking to give others time to eat
-// 
-static void take_forks(t_philo *philo)
+//
+static void	take_forks(t_philo *philo)
 {
-	pthread_mutex_t *first;
-	pthread_mutex_t *second;
+	pthread_mutex_t	*first;
+	pthread_mutex_t	*second;
 
 	first = philo->lfork;
 	second = philo->rfork;
@@ -43,9 +44,9 @@ static void take_forks(t_philo *philo)
 }
 
 // 9.2 take forks, set last_meal time, print, sleep, release forks
-static void eat(t_philo *philo)
+static void	eat(t_philo *philo)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = philo->data;
 	take_forks(philo);
@@ -59,12 +60,12 @@ static void eat(t_philo *philo)
 	pthread_mutex_unlock(philo->rfork);
 }
 
-// 9.3: print, 
+// 9.3: print,
 // then (odd total philos only) all philos wait extra to avoid dying
 // this is the extra padding needed so that each of 3 groups lines up
 // for example,  (200 * 200) - 200 = 200, so in a run of 800 200 200,
-// all philos have a 200ms think cycle so they line up in group of 3 
-static void think(t_philo *philo)
+// all philos have a 200ms think cycle so they line up in group of 3
+static void	think(t_philo *philo)
 {
 	t_data	*data;
 	long	extra;
@@ -88,10 +89,10 @@ void	one_philo(t_philo *philo)
 	pthread_mutex_unlock(philo->lfork);
 }
 
-// 9. 
+// 9.
 // this is the function that each philo thread runs once launched
 // Staggers all even philos so that they can "take turns"
-void    *philo_routine(void *arg)
+void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
 	t_data	*data;
