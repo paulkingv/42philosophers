@@ -6,7 +6,7 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 14:01:42 by pking             #+#    #+#             */
-/*   Updated: 2026/11/18 21:45:47 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/18 21:54:19 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int	fill_data(t_data *data, int arg, int i)
 // 5. convert_to_ascii: atoi, then fills data struct's corresponding variable
 int	convert_to_ascii(t_data *data, int argc, char **argv)
 {
-	int	args[argc - 1];
+	int	value;
 	int	i;
 
 	i = 1;
-	while (argv[i])
+	while (i < argc)
 	{
-		args[i - 1] = ft_atoi(argv[i]);
-		if (args[i - 1] == -1)
+		value = ft_atoi(argv[i]);
+		if (value == -1)
 			return (1);
-		if (fill_data(data, args[i - 1], i - 1))
+		if (fill_data(data, value, i - 1))
 			return (1);
 		i++;
 	}
