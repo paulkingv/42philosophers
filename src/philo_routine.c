@@ -6,7 +6,7 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 18:22:50 by pking             #+#    #+#             */
-/*   Updated: 2026/11/17 16:14:30 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/18 21:33:31 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
     Features of a philo
     One -- Eat
     Two -- Sleep
+
     Three -- Pick up Forks
-
-
+	
+	If not sleeping, and no forks, they are thinking
 */
 
 // 9.2.1 take forks: odd philos need extra thinking to give others time to eat
 // odd philos need extra thinking to give others time to eat
+// 
 static void take_forks(t_philo *philo)
 {
 	pthread_mutex_t *first;
@@ -57,7 +59,11 @@ static void eat(t_philo *philo)
 	pthread_mutex_unlock(philo->rfork);
 }
 
-// 9.3: print, then (odd philo only) wait extra to avoid dying
+// 9.3: print, 
+// then (odd total philos only) all philos wait extra to avoid dying
+// this is the extra padding needed so that each of 3 groups lines up
+// for example,  (200 * 200) - 200 = 200, so in a run of 800 200 200,
+// all philos have a 200ms think cycle so they line up in group of 3 
 static void think(t_philo *philo)
 {
 	t_data	*data;
@@ -84,6 +90,7 @@ void	one_philo(t_philo *philo)
 
 // 9. 
 // this is the function that each philo thread runs once launched
+// Staggers all even philos so that they can "take turns"
 void    *philo_routine(void *arg)
 {
 	t_philo	*philo;
@@ -93,7 +100,6 @@ void    *philo_routine(void *arg)
 	data = philo->data;
 	if (data->num_of_philos == 1)
 	{
-		// case for 1
 		one_philo(philo);
 		return (NULL);
 	}

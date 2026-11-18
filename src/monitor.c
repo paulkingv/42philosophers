@@ -6,7 +6,7 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 15:23:40 by pking             #+#    #+#             */
-/*   Updated: 2026/11/11 17:48:23 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/18 20:59:16 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int check_philo(t_data *data, t_philo *philo, int *fed)
     return (dead);
 }
 
+// runs in main thread 
+// cant reaturn a function
 void    monitor(t_data *data)
 {
     int i;
@@ -37,11 +39,17 @@ void    monitor(t_data *data)
         while (i < data->num_of_philos)
         {
             if (check_philo(data, &data->philo[i], &fed))
-                return (print_death(data, data->philo[i].id));
+			{
+				print_death(data, data->philo[i].id);
+				return ;
+			}
             i++;
         }
         if (fed)
-            return (set_stop(data));
+		{
+			set_stop(data);
+			return ;
+		}
         usleep(1000);
     }
 }

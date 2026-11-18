@@ -6,7 +6,7 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 14:18:50 by pking             #+#    #+#             */
-/*   Updated: 2026/11/17 16:19:34 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/18 21:08:26 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ long now_ms(void)
     return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-//  safe read of stop flag 
+//  safe read of stop flag. Used in other functs to determine if we have run set_stop
+// (stop gets set in print_death, inside the main monitor)
 int is_stopped(t_data *data)
 {
 	int stop_clone;

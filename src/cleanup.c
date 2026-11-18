@@ -6,13 +6,15 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 17:48:46 by pking             #+#    #+#             */
-/*   Updated: 2026/11/12 17:38:31 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/18 21:02:23 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+// runs in main thread
 // joins every started thread and destroys mutexes
+// handles malloc failed case with data->philo
 void cleanup (t_data *data)
 {
 	int i;
