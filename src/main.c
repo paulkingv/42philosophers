@@ -6,17 +6,13 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 16:01:47 by pking             #+#    #+#             */
-/*   Updated: 2026/11/08 16:29:49 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/17 16:33:01 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-
-
-
 // 1. main
-// NOTE: Apparently init_data cant fail
 int main (int argc, char **argv)
 {
 	t_data  data;

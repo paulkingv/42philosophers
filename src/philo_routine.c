@@ -6,7 +6,7 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 18:22:50 by pking             #+#    #+#             */
-/*   Updated: 2026/11/12 18:50:51 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/17 16:14:30 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 */
 
+// 9.2.1 take forks: odd philos need extra thinking to give others time to eat
 // odd philos need extra thinking to give others time to eat
 static void take_forks(t_philo *philo)
 {
@@ -39,6 +40,7 @@ static void take_forks(t_philo *philo)
 	print_state(philo, "has taken a fork");
 }
 
+// 9.2 take forks, set last_meal time, print, sleep, release forks
 static void eat(t_philo *philo)
 {
 	t_data *data;
@@ -55,6 +57,7 @@ static void eat(t_philo *philo)
 	pthread_mutex_unlock(philo->rfork);
 }
 
+// 9.3: print, then (odd philo only) wait extra to avoid dying
 static void think(t_philo *philo)
 {
 	t_data	*data;
@@ -69,6 +72,7 @@ static void think(t_philo *philo)
 		ms_sleep(data, extra);
 }
 
+// 9.1: solo philo will take a fork and wait to die
 void	one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(philo->lfork);
@@ -77,9 +81,9 @@ void	one_philo(t_philo *philo)
 		usleep(500);
 	pthread_mutex_unlock(philo->lfork);
 }
+
 // 9. 
 // this is the function that each philo thread runs once launched
-
 void    *philo_routine(void *arg)
 {
 	t_philo	*philo;

@@ -6,7 +6,7 @@
 /*   By: pking <pking@student.42angouleme.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 15:18:22 by pking             #+#    #+#             */
-/*   Updated: 2026/11/12 18:03:54 by pking            ###   ########.fr       */
+/*   Updated: 2026/11/17 19:11:46 by pking            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void init_data(t_data *data)
 	memset(data, 0, sizeof(*data));
 	data->num_times_philos_eat = -1;
 }
-//this function creates the array of philos and array of forks
+
+// 8.1: init mutexes, also creates the array of philos and array of forks
 static	int	init_mutexes(t_data *data)
 {
 	int i;
@@ -42,7 +43,8 @@ static	int	init_mutexes(t_data *data)
 	}
 	return (0);
 }
-// 8.3 init_philos: fills each philo (id, forks, last_meal, ptr to data)
+
+// 8.2 init_philos: fills each philo (id, forks, last_meal, ptr to data)
 void init_philos(t_data *data)
 {
 	int i;
