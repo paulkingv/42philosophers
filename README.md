@@ -104,3 +104,4 @@ LLMs were used for the following:
 - Scaffolding the project
 - Teaching me about the external functions that I had never used before
 - Advising on logic for how threads work
+- This README.md
